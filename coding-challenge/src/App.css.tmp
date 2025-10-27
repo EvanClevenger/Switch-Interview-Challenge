@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #000;
+}
+
+.logo {
+  height: 40px;
+}
+
+.header-options {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.header-options p {
+  color: white;
+  margin: 0;
+  cursor: pointer;
+}
