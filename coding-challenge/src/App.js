@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [benefitsData, setBenefitsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [tabActive, setTabActive] = useState("Benefits");
 
   useEffect(() => {
     const fetchBenefits = async () => {
@@ -31,27 +32,28 @@ function App() {
         <header className="header">
           <img src={logo} alt="logo" className="logo" />
           <div className="header-options">
-            <p>Benefits</p>
-            <p>Safety</p>
-            <p>Policies</p>
+            {["Benefits", "Safety", "Policies"].map((tab, index) => (
+              <p
+                key={index}
+                className={`tab ${tabActive === tab ? "active" : ""}`}
+                onClick={() => setTabActive(tab)}>
+                {tab}
+              </p>
+            ))}
           </div>
         </header>
       }
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        benefitsData.map((data, index) => {
-          return (
-            <div className="App" key={index}>
-              <div className="benefits-cards">
-                <ul>
-                  <li className="card-header">{data.title}</li>
-                  <li className="card-paragraph">{data.description}</li>
-                </ul>
-              </div>
+        <div className="benefits-cards">
+          {benefitsData.map((data, index) => (
+            <div className="card" key={index}>
+              <div className="card-header">{data.title}</div>
+              <div className="card-paragraph">{data.description}</div>
             </div>
-          );
-        })
+          ))}
+        </div>
       )}
     </>
   );
