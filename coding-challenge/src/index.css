@@ -16,3 +16,11 @@ body {
   color: white;
   margin-right: 1rem;
 }
+.benefits-cards {
+  border: solid black;
+}
+
+.card-header {
+  color: white;
+  background-color: red;
+}
