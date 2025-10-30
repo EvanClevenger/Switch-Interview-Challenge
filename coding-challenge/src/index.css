@@ -48,17 +48,17 @@ body {
   position: relative;
   padding-bottom: 0;
   margin: 0;
-  min-width: 100px; /* Set a minimum width that fits your longest word */
+  min-width: 100px; /* Set a minimum width that fits the longest word */
   text-align: center;
 }
 
 .header-options .active::after {
   content: "";
   position: absolute;
-  bottom: -24px;
+  bottom: -21px;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 4px;
   background-color: var(--card-header-color);
 }
 
