@@ -2,11 +2,13 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: white;
+  color: var(--app-background);
 }
 
 .header {
   display: flex;
-  background-color: black;
+  background-color: var(--header-background-color);
   justify-content: space-between;
   font-size: 18px;
   min-height: 40px;
@@ -35,7 +37,8 @@ body {
 .header-options {
   position: relative;
   display: flex;
-  color: white;
+  gap: 15px;
+  color: var(--header-options-color);
   margin-right: 1rem;
   cursor: pointer;
   align-items: center;
@@ -55,8 +58,12 @@ body {
   bottom: -24px;
   left: 0;
   width: 100%;
-  height: 6px;
-  background-color: #e10600;
+  height: 2px;
+  background-color: var(--card-header-color);
+}
+
+.toggle-icon {
+  height: 25px;
 }
 
 .benefits-cards {
@@ -64,15 +71,16 @@ body {
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   padding: 1rem;
-  border: solid black;
+  background-color: var(--app-background);
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  border: 2px solid rgb(135, 135, 135);
+  border: 2px solid var(--card-border-color);
   padding: 0;
   overflow: hidden;
+  color: var(--primary-text-color);
 }
 
 .card-header {
@@ -80,8 +88,8 @@ body {
   font-size: 1.125rem;
   font-weight: 600;
   padding: 1rem;
-  color: white;
-  background-color: #e10600;
+  color: var(--header-options-color);
+  background-color: var(--card-header-color);
 }
 
 .card-paragraph {
@@ -108,4 +116,22 @@ body {
   .benefits-cards {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+[data-theme="light"] {
+  --app-background: white;
+  --header-background-color: black;
+  --header-options-color: white;
+  --card-header-color: #e10600;
+  --card-border-color: rgb(135, 135, 135);
+  --primary-text-color: black;
+}
+
+[data-theme="dark"] {
+  --app-background: black;
+  --header-background-color: rgb(79, 78, 78);
+  --header-options-color: white;
+  --card-header-color: #e10600;
+  --card-border-color: white;
+  --primary-text-color: white;
 }
