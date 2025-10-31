@@ -5,7 +5,7 @@ import sunIcon from "../assets/sunIcon.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function AcknowledgementPage({ tabActive, setTabActive, isDark, setDark }) {
+function AcknowledgementPage({ isDark, setDark, activeTab, setTabActive }) {
   const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate();
 
@@ -18,15 +18,18 @@ function AcknowledgementPage({ tabActive, setTabActive, isDark, setDark }) {
 
   return (
     <>
-      <div data-theme={isDark ? "dark" : "light"}>
+      <div data-theme={isDark ? "dark" : "light"} className="page-wrapper">
         <header className="ack-page-header">
           <img src={logo} alt="logo" className="logo" />
           <div className="ack-header-options">
             {["Benefits", "Safety", "Policies"].map((tab, index) => (
               <p
                 key={index}
-                className={`tab ${tabActive === tab ? "active" : ""}`}
-                onClick={() => setTabActive(tab)}>
+                className={`tab ${activeTab === tab ? "active" : ""}`}
+                onClick={() => {
+                  setTabActive(tab);
+                  console.log("AckPage props:", { activeTab });
+                }}>
                 {tab}
               </p>
             ))}
@@ -42,7 +45,7 @@ function AcknowledgementPage({ tabActive, setTabActive, isDark, setDark }) {
             />
           </div>
         </header>
-        <body className="ack-body">
+        <div className="ack-body">
           <h1 className="ack-title">Acknowledgement</h1>
           <p className="ack-text">
             Please confirm that you've reviewed all benefits and policies.
@@ -60,7 +63,7 @@ function AcknowledgementPage({ tabActive, setTabActive, isDark, setDark }) {
             disabled={!isChecked}>
             Confirm
           </button>
-        </body>
+        </div>
       </div>
     </>
   );

@@ -3,12 +3,12 @@ import logo from "../assets/logo_white.png";
 import { useEffect, useState } from "react";
 import moonIcon from "../assets/moonIcon.png";
 import sunIcon from "../assets/sunIcon.png";
+import { useNavigate } from "react-router-dom";
+import "./AckPage";
 
-function MainPage() {
+function MainPage({ isDark, setDark, activeTab, setTabActive }) {
   const [benefitsData, setBenefitsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [tabActive, setTabActive] = useState("Benefits");
-  const [isDark, setDark] = useState(false);
 
   useEffect(() => {
     const fetchBenefits = async () => {
@@ -29,9 +29,13 @@ function MainPage() {
     fetchBenefits();
   }, []);
 
+  const navigate = useNavigate();
+
+  console.log("App state:", { activeTab, isDark });
+
   return (
     <>
-      <div data-theme={isDark ? "dark" : "light"}>
+      <div data-theme={isDark ? "dark" : "light"} className="page-wrapper">
         {
           <header className="header">
             <img src={logo} alt="logo" className="logo" />
@@ -39,8 +43,11 @@ function MainPage() {
               {["Benefits", "Safety", "Policies"].map((tab, index) => (
                 <p
                   key={index}
-                  className={`tab ${tabActive === tab ? "active" : ""}`}
-                  onClick={() => setTabActive(tab)}>
+                  className={`tab ${activeTab === tab ? "active" : ""}`}
+                  onClick={() => {
+                    setTabActive(tab);
+                    console.log(`active Tab : ${activeTab} `);
+                  }}>
                   {tab}
                 </p>
               ))}
@@ -70,9 +77,7 @@ function MainPage() {
           </div>
         )}
         <footer className="footer-container">
-          <p
-            className="footer-next"
-            onClick={() => (window.location.href = "/AckPage")}>
+          <p className="footer-next" onClick={() => navigate("/AckPage")}>
             <span className="underline-on-hover">Next</span> ➡️
           </p>
         </footer>
